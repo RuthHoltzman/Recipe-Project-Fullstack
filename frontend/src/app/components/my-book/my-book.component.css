@@ -1,0 +1,130 @@
+/* צבעים מרכזיים */
+:root {
+  --food-orange: #ffc107;
+  --food-black: #1a1a1a;
+}
+
+/* כותרת ספר המתכונים */
+.display-5.text-danger {
+  color: var(--food-black) !important;
+}
+
+.display-5 i {
+  color: var(--food-orange);
+}
+
+/* כרטיסי סיכום (מתכונים בספר, הסגנון שלך) */
+.card.bg-light {
+  background-color: #ffffff !important;
+  border: 1px solid #eee !important;
+  transition: transform 0.2s;
+}
+
+.card.bg-light:hover {
+  transform: translateY(-3px);
+}
+
+.text-danger.fw-bold, .text-primary.fw-bold {
+  color: var(--food-black) !important; /* מספר המתכונים בשחור */
+}
+
+/* כרטיס מתכון בספר */
+.recipe-card {
+  transition: all 0.3s ease;
+  border: 1px solid #f1f1f1 !important;
+}
+
+.recipe-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+  border-color: var(--food-orange) !important;
+}
+
+/* כפתורי פעולה על הכרטיס (X וסל קניות) */
+.btn-danger.rounded-circle {
+  background-color: var(--food-black);
+  border: none;
+  opacity: 0.8;
+  transition: 0.2s;
+}
+
+.btn-danger.rounded-circle:hover {
+  background-color: #ff4757; /* אדום רק במחיקה */
+  opacity: 1;
+}
+
+.btn-white.rounded-circle {
+  background: white;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* כפתור צפייה */
+.btn-outline-danger {
+  border-color: var(--food-black);
+  color: var(--food-black);
+  font-weight: 600;
+}
+
+.btn-outline-danger:hover {
+  background-color: var(--food-black);
+  border-color: var(--food-black);
+  color: var(--food-orange);
+}
+
+/* כפתור רשימת קניות ראשי */
+.btn-success {
+  background-color: var(--food-black) !important;
+  border: none !important;
+  color: var(--food-orange) !important;
+  padding: 10px 25px;
+}
+
+.btn-success:hover {
+  background-color: var(--food-orange) !important;
+  color: var(--food-black) !important;
+}
+
+.btn-success .badge {
+  background-color: var(--food-orange) !important;
+  color: var(--food-black) !important;
+}
+
+/* תמונות */
+.image-container {
+  height: 180px;
+  overflow: hidden;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* עיצוב כפתור ה-X כך שיהיה בולט מאוד */
+.btn-danger.rounded-circle {
+  background-color: #1a1a1a !important; /* רקע שחור פחם לניגודיות מקסימלית */
+  color: #ffffff !important;           /* ה-X עצמו בלבן */
+  border: 2px solid #ffffff !important; /* מסגרת לבנה דקה שמפרידה מהתמונה */
+  width: 35px !important;              /* הגדלת הכפתור */
+  height: 35px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  opacity: 1 !important;               /* שלא יהיה שקוף בכלל */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important; /* צל חזק שיראה כאילו הוא צף */
+  transition: all 0.2s ease-in-out;
+  z-index: 10;                         /* מבטיח שהוא תמיד מעל הכל */
+}
+
+/* אפקט במעבר עכבר - שהמשתמש ידע שהוא עומד למחוק */
+.btn-danger.rounded-circle:hover {
+  background-color: #ff4757 !important; /* הופך לאדום בוהק רק בריחוף */
+  transform: scale(1.1);                /* גדל מעט */
+}
+
+/* הדגשת האייקון עצמו בתוך הכפתור */
+.btn-danger.rounded-circle i {
+  font-size: 1.1rem !important;         /* הגדלת ה-X */
+  -webkit-text-stroke: 0.5px;           /* הופך את ה-X למעט יותר עבה */
+}

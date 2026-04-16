@@ -1,0 +1,32 @@
+/* אנימציית כניסה עדינה */
+.fade-in {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* אפקט ריחוף על כפתורים */
+.hover-scale {
+  transition: transform 0.2s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* צבעי רקע עדינים לבאדג'ים של מתכונים */
+.bg-danger-subtle { background-color: #fceaea !important; }
+.bg-info-subtle { background-color: #eaf6fc !important; }
+.bg-success-subtle { background-color: #eafcea !important; }
+
+/* כפתורי הטאבים */
+.transition-btn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-dark {
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}

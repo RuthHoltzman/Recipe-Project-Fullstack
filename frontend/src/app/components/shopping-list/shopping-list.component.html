@@ -1,0 +1,67 @@
+<div class="container mt-5" dir="rtl">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm border-0 rounded-4 p-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2 class="fw-bold text-success mb-0">
+            <i class="bi bi-cart-check"></i> רשימת הקניות שלי
+          </h2>
+         <div class="mb-3">
+    <button class="btn btn-link text-decoration-none text-muted p-0" onclick="history.back() ">
+      <i class="bi bi-arrow-right-short fs-4"></i> חזרה
+    </button>
+  </div>
+        </div>
+
+        @if (isLoading) {
+        <div class="text-center p-5">
+          <div class="spinner-border text-success"></div>
+        </div>
+        } @else if (items.length === 0) {
+        <div class="text-center py-5">
+          <i class="bi bi-basket2 fs-1 text-muted"></i>
+          <p class="mt-3 text-muted fs-5">
+            הרשימה שלך ריקה. זמן להוסיף מתכונים!
+          </p>
+          <a routerLink="/my-book" class="btn btn-success rounded-pill mt-2"
+            >לספר המתכונים שלי</a
+          >
+        </div>
+        } @else {
+        <div class="list-group list-group-flush">
+          @for (item of items; track item.id) {
+          <div
+            class="list-group-item d-flex align-items-center p-3 border-bottom"
+          >
+            <div class="form-check fs-5" (click)="toggleItem(item)">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                [checked]="item.is_completed"
+              />
+            </div>
+
+            <div
+              class="ms-3 flex-grow-1"
+              [class.text-decoration-line-through]="item.is_completed"
+            >
+              <span class="fw-bold">{{ item.product_name }}</span>
+              <small class="d-block text-muted"
+                >{{ item.amount }} {{ item.unit }}</small
+              >
+            </div>
+
+            <button
+              class="btn btn-link text-danger p-0 ms-2"
+              (click)="deleteItem(item.id, $event)"
+            >
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+          }
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

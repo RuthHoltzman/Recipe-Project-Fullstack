@@ -1,0 +1,119 @@
+.shopping-note {
+  background: #fefabc; /* צבע צהוב פתק קלאסי */
+  padding: 30px;
+  position: relative;
+  min-height: 400px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+  transform: rotate(-1deg); /* הטיה קלה למראה טבעי */
+  border-radius: 2px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* אפקט של דף מקופל בפינה */
+.shopping-note::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-width: 0 30px 30px 0;
+  border-style: solid;
+  border-color: #fdf68c #fff;
+}
+
+.note-title {
+  font-family: 'Brush Script MT', cursive; /* גופן דמוי כתב יד */
+  font-size: 2.5rem;
+  color: #333;
+  border-bottom: 2px dashed #e6e08d;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.list-group-item {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid #e6e08d !important;
+  font-size: 1.2rem;
+  transition: all 0.3s;
+}
+
+.list-group-item:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* קו חוצה לפריטים שנקנו */
+.completed {
+  text-decoration: line-through;
+  color: #888;
+  opacity: 0.6;
+}
+
+.btn-delete {
+  color: #cc9966;
+  opacity: 0.5;
+}
+
+.btn-delete:hover {
+  color: #ff0000;
+  opacity: 1;
+}.shopping-note {
+  background: #fefabc; /* צבע צהוב פתק קלאסי */
+  padding: 30px;
+  position: relative;
+  min-height: 400px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+  transform: rotate(-1deg); /* הטיה קלה למראה טבעי */
+  border-radius: 2px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* אפקט של דף מקופל בפינה */
+.shopping-note::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-width: 0 30px 30px 0;
+  border-style: solid;
+  border-color: #fdf68c #fff;
+}
+
+.note-title {
+  font-family: 'Brush Script MT', cursive; /* גופן דמוי כתב יד */
+  font-size: 2.5rem;
+  color: #333;
+  border-bottom: 2px dashed #e6e08d;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.list-group-item {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid #e6e08d !important;
+  font-size: 1.2rem;
+  transition: all 0.3s;
+}
+
+.list-group-item:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* קו חוצה לפריטים שנקנו */
+.completed {
+  text-decoration: line-through;
+  color: #888;
+  opacity: 0.6;
+}
+
+.btn-delete {
+  color: #cc9966;
+  opacity: 0.5;
+}
+
+.btn-delete:hover {
+  color: #ff0000;
+  opacity: 1;
+}

@@ -1,0 +1,220 @@
+<main class="container-fluid bg-light min-vh-100 py-5" dir="rtl">
+  <div class="container">
+    
+    <header class="d-flex justify-content-between align-items-center mb-5">
+      <div>
+        <h2 class="fw-bold text-dark">
+          <i class="bi bi-speedometer2 me-2"></i>לוח בקרה למנהל
+        </h2>
+        <p class="text-muted mb-0">ניהול המערכת, המשתמשים והתכנים</p>
+      </div>
+
+      <section class="d-flex gap-3" aria-label="Quick Stats">
+        <div class="bg-white p-3 rounded-4 shadow-sm border-start border-4 border-primary">
+          <div class="small text-muted">מתכונים</div>
+          <div class="fw-bold fs-4">{{ recipes.length }}</div>
+        </div>
+        <div class="bg-white p-3 rounded-4 shadow-sm border-start border-4 border-success">
+          <div class="small text-muted">משתמשים</div>
+          <div class="fw-bold fs-4">{{ users.length }}</div>
+        </div>
+      </section>
+    </header>
+
+    <nav class="bg-white p-2 rounded-pill shadow-sm d-inline-flex mb-4" role="tablist">
+      <button class="btn rounded-pill px-4 fw-bold transition-btn"
+              [class.btn-dark]="activeTab === 'recipes'"
+              [class.text-muted]="activeTab !== 'recipes'"
+              (click)="activeTab = 'recipes'"
+              role="tab">
+        <i class="bi bi-journal-text me-2"></i>ניהול מתכונים
+      </button>
+
+      <button class="btn rounded-pill px-4 fw-bold transition-btn"
+              [class.btn-dark]="activeTab === 'users'"
+              [class.text-muted]="activeTab !== 'users'"
+              (click)="activeTab = 'users'"
+              role="tab">
+        <i class="bi bi-people-fill me-2"></i>ניהול משתמשים
+      </button>
+
+      <button class="btn rounded-pill px-4 fw-bold transition-btn"
+              [class.btn-dark]="activeTab === 'pending'"
+              [class.text-muted]="activeTab !== 'pending'"
+              (click)="activeTab = 'pending'"
+              role="tab">
+        <i class="bi bi-person-badge-fill me-2"></i>
+        ממתינים לאישור
+        <span class="badge bg-danger ms-1" *ngIf="pendingUsers.length > 0">
+          {{ pendingUsers.length }}
+        </span>
+      </button>
+    </nav>
+
+    @if (activeTab === 'pending') {
+      <section class="card shadow-sm border-0 rounded-4 overflow-hidden fade-in" role="tabpanel">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0">
+            <thead class="bg-light text-secondary">
+              <tr>
+                <th scope="col" class="py-3 ps-4">מזהה</th>
+                <th scope="col" class="py-3">אימייל</th>
+                <th scope="col" class="py-3 text-center">פעולות</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (user of pendingUsers; track user.id) {
+                <tr>
+                  <td class="ps-4">#{{ user.id }}</td>
+                  <td class="fw-bold">{{ user.email }}</td>
+                  <td class="text-center">
+                    <button class="btn btn-success btn-sm rounded-pill px-3 shadow-sm" (click)="approveUser(user.id)">
+                      <i class="bi bi-check-lg me-1"></i> אשר עכשיו
+                    </button>
+                  </td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="3" class="text-center py-5 text-muted">אין בקשות אישור ממתינות</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </section>
+    }
+
+    @if (activeTab === 'recipes') {
+      <section class="card shadow-sm border-0 rounded-4 overflow-hidden fade-in" role="tabpanel">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0">
+            <thead class="bg-light text-secondary">
+              <tr>
+                <th scope="col" class="py-3 ps-4">מזהה</th>
+                <th scope="col" class="py-3">שם המתכון</th>
+                <th scope="col" class="col" class="py-3">סוג</th>
+                <th scope="col" class="py-3">מאת</th>
+                <th scope="col" class="py-3 text-center">פעולות</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (recipe of recipes; track recipe.id) {
+                <tr>
+                  <td class="ps-4 text-muted">#{{ recipe.id }}</td>
+                  <td class="fw-bold">{{ recipe.title }}</td>
+                  <td>
+                    <span class="badge rounded-pill"
+                          [ngClass]="{
+                            'bg-danger-subtle text-danger': recipe.type === 'בשרי',
+                            'bg-info-subtle text-info': recipe.type === 'חלבי',
+                            'bg-success-subtle text-success': recipe.type === 'פרווה'
+                          }">
+                      {{ recipe.type }}
+                    </span>
+                  </td>
+                  <td>{{ recipe.author }}</td>
+                  <td class="text-center">
+                    <button class="btn btn-sm btn-outline-primary me-2 rounded-circle" 
+                            [routerLink]="['/recipe', recipe.id]" title="צפייה">
+                      <i class="bi bi-eye"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger rounded-circle" 
+                            (click)="deleteRecipe(recipe.id)" title="מחיקה">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </section>
+    }
+
+    @if (activeTab === 'users') {
+      <section class="fade-in" role="tabpanel">
+        <div class="d-flex justify-content-end mb-3">
+          <button class="btn btn-warning rounded-pill shadow-sm fw-bold" (click)="copyDistributionList()">
+            <i class="bi bi-envelope-paper-heart-fill me-2"></i> העתק רשימת תפוצה
+          </button>
+        </div>
+
+        <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="bg-light text-secondary">
+                <tr>
+                  <th scope="col" class="py-3 ps-4">משתמש</th>
+                  <th scope="col" class="py-3">תפקיד נוכחי</th>
+                  <th scope="col" class="py-3 text-center">דיוור (Updates)</th>
+                  <th scope="col" class="py-3 text-center">סטטוס וניהול</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (user of users; track user.id) {
+                  <tr>
+                    <td class="ps-4">
+                      <div class="d-flex align-items-center gap-3">
+                        <ng-container *ngIf="user.profile_image; else noThumb">
+                          <img [src]="apiUrl + user.profile_image"
+                               class="rounded-circle shadow-sm"
+                               alt="Profile picture"
+                               style="width: 45px; height: 45px; object-fit: cover">
+                        </ng-container>
+                        <ng-template #noThumb>
+                          <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center fw-bold"
+                               style="width: 45px; height: 45px;">
+                            {{ user.email[0].toUpperCase() }}
+                          </div>
+                        </ng-template>
+                        <div>
+                          <div class="fw-bold">{{ user.email }}</div>
+                          <small class="text-muted">ID: #{{ user.id }}</small>
+                        </div>
+                      </div>
+                    </td>
+
+                    <td>
+                      <span class="badge rounded-pill px-3"
+                            [ngClass]="user.role === 'Admin' ? 'bg-dark' : 'bg-secondary bg-opacity-10 text-secondary'">
+                        {{ user.role }}
+                      </span>
+                    </td>
+
+                    <td class="text-center">
+                      <span *ngIf="user.wants_updates" class="badge bg-success-subtle text-success border border-success border-opacity-25 rounded-pill">
+                        <i class="bi bi-envelope-check-fill me-1"></i> רשום
+                      </span>
+                      <span *ngIf="!user.wants_updates" class="text-muted opacity-50 small">לא רשום</span>
+                    </td>
+
+                    <td class="text-center">
+                      <ng-container [ngSwitch]="true">
+                        <span *ngSwitchCase="user.role === 'Admin'" class="text-dark small fw-bold">
+                          <i class="bi bi-shield-check"></i> מנהל מערכת
+                        </span>
+                        <button *ngSwitchCase="user.role === 'Uploader' && !user.is_approved_uploader"
+                                class="btn btn-success btn-sm rounded-pill px-3 shadow-sm hover-scale"
+                                (click)="approveUser(user.id)">
+                          <i class="bi bi-person-check-fill me-1"></i> אשר כמעלה
+                        </button>
+                        <span *ngSwitchCase="user.is_approved_uploader" class="text-success small fw-bold">
+                          <i class="bi bi-check-all"></i> מעלה מאושר
+                        </span>
+                        <span *ngSwitchDefault class="text-muted small">צופה בלבד</span>
+                      </ng-container>
+                    </td>
+                  </tr>
+                } @empty {
+                  <tr>
+                    <td colspan="4" class="text-center py-5 text-muted">לא נמצאו משתמשים במערכת</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    }
+  </div>
+</main>

@@ -1,0 +1,215 @@
+/* עיצוב המברשת - עדכון צבע לכתום הבהיר שלך */
+.title-brush {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background: #ffc107; /* הכתום הבהיר */
+  opacity: 0.6;
+  z-index: 1;
+  transform: rotate(-1deg);
+  border-radius: 50%;
+}
+.search-box-wrapper {
+  position: sticky;
+  top: 20px; /* המרחק מהקצה העליון של המסך כשהוא נצמד */
+  z-index: 1000; /* מבטיח שהחיפוש יהיה מעל התמונות והכרטיסים */
+  background-color: white; /* חייב רקע כדי שלא יראו את המתכונים מאחורי הטקסט */
+  border: 1px solid #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important; /* הוספת צל כדי שיבלוט בזמן גלילה */
+}
+
+
+/* מוודא שהאלמנטים שעוטפים את החיפוש לא חוסמים את ה-Sticky */
+.header-section {
+  overflow: visible !important;
+}
+
+:host {
+  display: block;
+  overflow: visible !important;
+}
+.search-box-wrapper {
+  position: -webkit-sticky;
+  position: sticky;
+  
+  /* שורה זו היא המפתח: שנתה את הערך בהתאם לגובה התפריט שלך */
+  /* אם התפריט בגובה 70px, נשים 70px או 75px כדי שיהיה רווח קטן */
+  top: 75px; 
+  
+  z-index: 999; /* נמוך ב-1 מהתפריט אם צריך, אבל מעל הכרטיסים */
+  background-color: #ffffff !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15) !important;
+  border: 2px solid #1a1a1a !important;
+  border-radius: 12px;
+}
+/* כרטיסי המתכונים - הוספת מסגרת עדינה ב-Hover */
+.recipe-card {
+  transition: all 0.3s ease;
+  min-height: 360px;
+  border: 1px solid #f1f1f1 !important;
+}
+
+.recipe-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+  border-color: #ffc107 !important; /* מסגרת כתומה בסימון */
+}
+
+/* באדג'ים - צבעים בולטים יותר */
+.category-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  color: #000; /* טקסט שחור על רקע צבעוני לקריאות */
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  z-index: 2;
+}
+
+.type-tag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #1a1a1a; /* רקע שחור */
+  color: #ffc107; /* טקסט כתום */
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  z-index: 2;
+}
+
+/* כפתור למתכון המלא - התאמה לשחור וכתום */
+.btn-view-recipe {
+  background: #1a1a1a;
+  color: #ffc107;
+  border: none;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-view-recipe:hover {
+  background: #ffc107;
+  color: #1a1a1a;
+}
+
+/* כפתורי סינון (Pills) */
+.category-pill {
+  background: white;
+  border: 2px solid #f1f1f1;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.category-pill:hover {
+  border-color: #ffc107;
+}
+
+.category-pill.active {
+  background: #ffc107; /* כתום פעיל */
+  border-color: #1a1a1a; /* מסגרת שחורה לפעיל */
+  color: #1a1a1a;
+  transform: scale(1.05);
+}
+
+.underline-sm {
+  width: 60px;
+  height: 4px;
+  background: #ffc107; /* שונה לאחידות עם המותג */
+  margin: 8px auto 0;
+  border-radius: 10px;
+}
+
+/* תיבת חיפוש - הוספת מסגרת שחורה עדינה */
+.search-box-wrapper {
+  border: 1px solid #1a1a1a;
+  border-radius: 8px; /* שומר על סגנון בוטסטראפ */
+  overflow: hidden;
+}
+
+.image-container {
+  height: 200px;
+  background-color: #f8f9fa;
+  overflow: hidden;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+/* עיצוב הכוכבים - צהוב זהוב בולט */
+.stars-display {
+  color: #ffc107 !important; /* זהב/כתום */
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.stars-display i {
+  font-size: 0.9rem; /* גודל האייקון */
+}
+
+/* עיצוב הלב (לייקים) - אדום חי */
+.favorites-count {
+  color: #ff4757 !important; /* אדום פוד-בלוג קלאסי */
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+.favorites-count i {
+  margin-left: 4px;
+}
+
+/* מוודא שהאייקונים של בוטסטראפ נראים */
+.bi::before {
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+/* חיזוק צבע הכוכבים שיראו אותם בבירור */
+.stars-display.text-warning {
+  color: #ffc107 !important; /* הכתום-צהוב הבהיר שלך */
+}
+
+/* חיזוק צבע הלב */
+.favorites-count.text-danger {
+  color: #ff4757 !important;
+}
+
+/* שאר ההגדרות שביקשת */
+.title-brush {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background: #ffc107;
+  opacity: 0.5;
+  z-index: 1;
+  transform: rotate(-1deg);
+  border-radius: 50%;
+}
+
+.recipe-card {
+  transition: all 0.3s ease;
+  min-height: 360px;
+}
+
+.recipe-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+.category-pill.active {
+  background: #ffc107;
+  border-color: #1a1a1a;
+}

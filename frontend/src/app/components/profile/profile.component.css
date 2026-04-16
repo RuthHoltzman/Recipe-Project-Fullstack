@@ -1,0 +1,93 @@
+/* קונטיינר התמונה - מרכז הכל */
+.profile-avatar-wrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto; /* מרכוז בנייד */
+}
+
+/* עיגול התמונה */
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #f8f9fa;
+    border: 4px solid #fff !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* כפתורי המצלמה והגלריה (מופיעים רק בעריכה) */
+.camera-badge {
+    position: absolute;
+    bottom: 5px;
+    background-color: #1a1a1a;
+    color: #ffc107;
+    border: 3px solid white !important;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease;
+}
+
+/* תיקון מיקומים לכפתורים כששניהם מופיעים */
+.camera-badge[title="צלם תמונה"] { left: 0; }
+.camera-badge[title="בחר קובץ"] { left: 45px; }
+
+.camera-badge:hover {
+    background-color: #ffc107;
+    color: #1a1a1a;
+    transform: scale(1.1);
+}
+
+/* תיקון כפתור "עריכת פרופיל" הראשי שלא נראה טוב */
+.btn-outline-primary {
+    color: #1a1a1a !important;
+    border: 2px solid #1a1a1a !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background-color: #1a1a1a !important;
+    color: #ffc107 !important;
+}
+
+/* שדות קלט מודגשים בעריכה */
+.editing-active {
+    background-color: #ffffff !important;
+    border: 2px solid #ffc107 !important;
+    box-shadow: 0 0 8px rgba(255, 193, 7, 0.2) !important;
+}
+
+/* טבלת המתכונים - עיצוב נקי */
+.table-responsive {
+    border-radius: 15px;
+    background: white;
+}
+
+.table tbody tr:hover {
+    background-color: #fffcf5;
+}
+
+.btn-outline-dark.rounded-circle {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

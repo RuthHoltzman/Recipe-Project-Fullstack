@@ -1,0 +1,49 @@
+<!-- דף הבית - ברוכים הבאים עם קטגוריות של מתכונים -->
+<div class="container py-5" dir="rtl">
+  <!-- כותרת ראשית -->
+  <div class="row mb-5 text-center">
+    <div class="col-12">
+      <h1 class="fw-bold text-dark display-4">מה נבשל היום?</h1>
+      <p class="fs-5 text-muted">המתכונים הכי טובים מחכים לכם כאן</p>
+      <hr class="w-25 mx-auto border-2 border-dark opacity-75" />
+    </div>
+  </div>
+
+  <!-- קטגוריות מתכונים -->
+  <div class="row g-4 justify-content-center">
+    <div class="container py-5" dir="rtl">
+      <div class="row g-4">
+        <!-- כרטיס לכל קטגוריה -->
+        @for (cat of categories; track cat.name) {
+        <div class="col-md-4">
+          <!-- קישור לדף כל המתכונים עם סינון לפי קטגוריה -->
+          <div
+            [queryParams]="{ cat: cat.name }"
+            [routerLink]="['/all-recipes']"
+            class="card h-100 recipe-card shadow-sm border-0 rounded-4 overflow-hidden"
+          >
+            <!-- תמונת הקטגוריה עם שם -->
+            <div class="position-relative image-container">
+              <img
+                [src]="apiUrl + cat.image_url"
+                class="card-img-top"
+                [alt]="cat.name"
+                style="height: 220px; object-fit: cover"
+              />
+              <!-- בנר עם שם הקטגוריה -->
+              <div class="recipe-banner">
+                <h5 class="banner-text">{{ cat.name }}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        } @empty {
+        <!-- הודעה כאשר אין קטגוריות -->
+        <div class="col-12 text-center py-5">
+          <p class="lead text-muted">אופס! לא מצאנו קטגוריות...</p>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

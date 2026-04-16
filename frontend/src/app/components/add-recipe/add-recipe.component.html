@@ -1,0 +1,137 @@
+<div class="container py-4" dir="rtl"> <div class="row justify-content-center">
+    <div class="col-lg-7 col-md-10">
+      
+      <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+        
+        <div class="card-header bg-gradient-dark text-white p-3 text-center">
+          <h3 class="fw-bold mb-0" style="color: #ffc107;">✨ מתכון חדש</h3>
+          <p class="small text-white-50 mb-0">שתפו את העולם בטעם שלכם</p>
+        </div>
+
+        <div class="card-body p-4 bg-white">
+          <form #recipeForm="ngForm" (ngSubmit)="onAddRecipe()">
+            
+            <h6 class="section-title mb-3" style="color: #1a1a1a; border-right: 4px solid #ffc107; padding-right: 10px;">
+              <i class="bi bi-info-circle-fill me-2"></i>פרטים כלליים
+            </h6>
+            
+            <div class="row g-2 mb-3"> <div class="col-md-8">
+                <label class="form-label fw-bold x-small text-muted mb-1">שם המנה</label>
+                <input type="text" name="title" [(ngModel)]="recipe.title" 
+                       class="form-control bg-light border-0" required>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label fw-bold x-small text-muted mb-1">סוג</label>
+                <select name="type" [(ngModel)]="recipe.type" class="form-select bg-light border-0" required>
+                  <option value="" disabled>בחר...</option>
+                  <option value="בשרי">🥩 בשרי</option>
+                  <option value="חלבי">🧀 חלבי</option>
+                  <option value="פרווה">🥗 פרווה</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label fw-bold x-small text-muted mb-1">תיאור קצר</label>
+              <input type="text" name="description" [(ngModel)]="recipe.description" class="form-control bg-light border-0 py-2">
+            </div>
+
+            <div class="row g-2 mb-4">
+              <div class="col-6 col-md-3">
+                 <label class="form-label fw-bold x-small text-muted mb-1">קטגוריה</label>
+                 <select name="category" [(ngModel)]="recipe.category" class="form-select bg-light border-0" required>
+                   <option value="" disabled>בחר...</option>
+                   @for (cat of categories; track cat.name) {
+                     <option [value]="cat.name">{{ cat.name }}</option>
+                   }
+                 </select>
+              </div>
+              <div class="col-6 col-md-3">
+                <label class="form-label fw-bold x-small text-muted mb-1">קושי</label>
+                <select name="difficulty" [(ngModel)]="recipe.difficulty" class="form-select bg-light border-0">
+                  <option value="קל">🟢 קל</option>
+                  <option value="בינוני">🟡 בינוני</option>
+                  <option value="קשה">🔴 קשה</option>
+                </select>
+              </div>
+              <div class="col-6 col-md-3">
+                 <label class="form-label fw-bold x-small text-muted mb-1">זמן (דק')</label>
+                 <input type="number" name="time_to_prepare" [(ngModel)]="recipe.time_to_prepare" class="form-control bg-light border-0 text-center" required>
+              </div>
+              <div class="col-6 col-md-3">
+                <label class="form-label fw-bold x-small text-muted mb-1">מנות</label>
+                <input type="number" name="servings" [(ngModel)]="recipe.servings" class="form-control bg-light border-0 text-center" required>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <div class="image-upload-wrapper p-2 border rounded-4 text-center bg-light">
+                <input type="file" (change)="onFileSelected($event)" class="d-none" id="fileUpload" accept="image/*">
+                @if (imagePreview) {
+                  <div class="position-relative">
+                    <img [src]="imagePreview" class="img-fluid rounded-3 shadow-sm" style="max-height: 180px;"> <button type="button" class="btn btn-sm btn-dark position-absolute top-0 end-0 m-2" onclick="document.getElementById('fileUpload').click()">החלף</button>
+                  </div>
+                } @else {
+                  <label for="fileUpload" class="py-3 d-block cursor-pointer">
+                    <i class="bi bi-camera fs-2 text-warning"></i><br>
+                    <span class="small fw-bold">העלה תמונה</span>
+                  </label>
+                }
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="mb-4">
+              <h6 class="fw-bold mb-3">מצרכים</h6>
+              <div class="bg-white border rounded-4 p-2 shadow-sm">
+                @for (ing of ingredientsList; track $index; let i = $index) {
+                  <div class="row g-2 mb-1 align-items-center ingredient-row py-1">
+                    <div class="col-2">
+                      <input type="number" name="amount_{{i}}" [(ngModel)]="ing.amount" class="form-control form-control-sm text-center bg-light border-0">
+                    </div>
+                    <div class="col-3">
+                      <select name="unit_{{i}}" [(ngModel)]="ing.unit" class="form-select form-select-sm bg-light border-0">
+                        @for (u of units; track u) { <option [value]="u">{{u}}</option> }
+                      </select>
+                    </div>
+                    <div class="col-6">
+                      <input type="text" name="product_name_{{i}}" [(ngModel)]="ing.product_name" class="form-control form-control-sm bg-light border-0" placeholder="מצרך">
+                    </div>
+                    <div class="col-1 text-center">
+                      <button type="button" (click)="removeIngredient(i)" class="btn text-danger p-0"><i class="bi bi-trash small"></i></button>
+                    </div>
+                  </div>
+                }
+                <button type="button" (click)="addIngredient()" class="btn btn-dashed-orange w-100 mt-2 py-1 small">הוסף מצרך +</button>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <h6 class="fw-bold mb-3">אופן ההכנה</h6>
+              @for (step of instructionsList; track $index; let i = $index) {
+                <div class="d-flex gap-2 mb-2 align-items-start">
+                  <div class="step-number shadow-sm" style="width: 28px; height: 28px; font-size: 0.9rem;">{{ i + 1 }}</div>
+                  <div class="flex-grow-1">
+                    <textarea name="instruction_{{i}}" [(ngModel)]="instructionsList[i]" 
+                              class="form-control border-0 shadow-sm bg-light py-1" rows="1" placeholder="שלב..."></textarea>
+                  </div>
+                  <button type="button" (click)="removeInstruction(i)" class="btn text-danger p-0 mt-1">
+                    <i class="bi bi-trash3 small"></i>
+                  </button>
+                </div>
+              }
+              <button type="button" (click)="addInstruction()" class="btn btn-dashed-orange w-100 mt-2 py-1 small">הוסף שלב +</button>
+            </div>
+
+            <button type="submit" [disabled]="recipeForm.invalid || !selectedFile || isLoading" 
+                    class="btn btn-gradient-dark w-100 py-2 rounded-pill fw-bold">
+              @if (isLoading) { <span>מעלה...</span> } @else { 🚀 פרסם מתכון }
+            </button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

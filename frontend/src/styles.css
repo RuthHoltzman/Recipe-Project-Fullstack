@@ -1,0 +1,78 @@
+/* You can add global styles to this file, and also import other style files */
+/* src/styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700&display=swap');
+
+:root {
+  /* גווני כתום */
+  --primary-orange: #ffc107;    /* כתום דומיננטי */
+  --orange-hover: #e6c107;     /* כתום כהה יותר למעבר עכבר */
+  
+  /* גווני שחור/אפור */
+  --main-black: #1a1a1a;       /* שחור עמוק לרקעים/תפריטים */
+  --text-black: #333333;       /* שחור לטקסט קריא */
+  
+  /* צבעי עזר */
+  --bg-light: #ffffff;         /* לבן נקי לרקע התוכן */
+  --light-gray: #f4f4f4;       /* אפור בהיר מאוד להפרדות עדינות */
+}
+/* עיצוב כפתורים */
+.btn-primary {
+  background-color: var(--primary-orange) !important;
+  border-color: var(--primary-orange) !important;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--orange-hover) !important;
+}
+
+/* עיצוב כותרות */
+h1, h2, h3 {
+  color: var(--main-black);
+  font-weight: 700;
+}
+
+/* נגיעות של כתום בטקסט */
+.highlight-orange {
+  color: var(--primary-orange);
+}
+
+/* התאמת ה-Navbar (אם הוא מבוסס בוטסטראפ) */
+.navbar-dark {
+  background-color: var(--main-black) !important;
+}
+
+.navbar-dark .nav-link:hover {
+  color: var(--primary-orange) !important;
+}
+body {
+  font-family: 'Assistant', sans-serif;
+  direction: rtl;
+  background-color: #f4f7f6;
+  margin: 0;
+}
+
+/* עיצוב הנב-בר */
+.custom-navbar {
+  background: linear-gradient(90deg, #2d3436 0%, #000000 100%);
+  padding: 15px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.nav-link {
+  color: #dfe6e9 !important;
+  font-weight: 500;
+  margin-left: 20px;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #00cec9 !important;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #00cec9 !important;
+}

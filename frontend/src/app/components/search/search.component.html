@@ -1,0 +1,114 @@
+<!-- דף חיפוש המקרר החכם - משתמש יכול להקליד או להגיד מוצרים ומקבל מתכונים התואמים -->
+<div class="container py-5 text-end">
+  <!-- כותרת הדף עם כפתור זיהוי קול -->
+  <div class="search-header mb-5 d-flex justify-content-between align-items-center">
+    <div>
+      <h2 class="fw-bold text-dark">המקרר החכם 🧊</h2>
+      <p class="text-muted small">הקלידו או אמרו את המוצרים שיש לכם במקרר:</p>
+    </div>
+    
+    <!-- כפתור לזיהוי קול - משנה צבע כשמקשיבה -->
+    <button (click)="startFridgeVoice()" 
+            [class.btn-warning]="isListening"
+            [class.btn-outline-dark]="!isListening"
+            class="btn btn-sm rounded-pill p-3 shadow-sm pulse-button fw-bold"
+            title="לחץ להתחלת זיהוי קולי">
+      <i class="bi" [ngClass]="isListening ? 'bi-mic-fill' : 'bi-mic'"></i>
+    </button>
+  </div>
+
+  <!-- שדות קלט למוצרים -->
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <!-- לולאה על כל שדה קלט -->
+      @for (ing of userIngredients; track $index) {
+        <!-- שדה קלט לכל מוצר עם כפתור מחיקה -->
+        <div class="input-group mb-3 shadow-sm rounded-pill overflow-hidden border border-dark border-opacity-25">
+          <span class="input-group-text bg-white border-0"><i class="bi bi-egg-fried text-warning"></i></span>
+          
+          <!-- שדה הקלט עם ngModel לשמירת הערך -->
+          <input type="text" 
+                 class="form-control border-0 py-3 input-ingredient" 
+                 placeholder="למשל: בצל, חלב, קמח..."
+                 [(ngModel)]="userIngredients[$index]"
+                 (blur)="onIngredientBlur($index)">
+                 
+          <!-- כפתור מחיקה של המוצר -->
+          <button class="btn btn-outline-warning border-0 fw-bold" (click)="removeInput($index)" title="הסר מוצר">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
+      }
+
+      <!-- כפתורי פעולה: הוסף מוצר וחפש -->
+      <div class="d-flex gap-2 mt-4">
+        <!-- כפתור הוסף שדה קלט חדש -->
+        <button class="btn btn-outline-dark rounded-pill w-100 fw-bold px-3 py-2" (click)="addInput()" title="הוסף שדה קלט נוסף">
+          <i class="bi bi-plus-lg"></i> הוסף מוצר
+        </button>
+        <!-- כפתור חיפוש המתכונים -->
+        <button class="btn btn-dark rounded-pill w-100 fw-bold px-3 py-2 shadow-sm" (click)="findRecipes()" title="חפש מתכונים התואמים">
+          חפש מתכונים ✨
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- הצגת תוצאות החיפוש -->
+  <div class="row g-4 mt-5">
+    <!-- לולאה על כל מתכון שמתאים -->
+    @for (recipe of matchingRecipes; track recipe.id) {
+      <!-- כרטיס מתכון: תמונה, שם, מוצרים חסרים, לינק לפרטים -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden position-relative card-recipe">
+          
+          <!-- תג אחוז התאמה בפינה עליונה -->
+          <div class="position-absolute top-0 end-0 m-3 badge rounded-pill bg-warning text-dark fw-bold p-2">
+            {{ recipe.match_percentage }}% התאמה
+          </div>
+
+          <!-- תמונת המתכון -->
+          <div class="card-img-wrapper">
+            <img [src]="apiUrl + recipe.image_name" 
+                 class="card-img-top w-100" 
+                 style="height: 200px; object-fit: cover; object-position: center;"
+                 alt="{{ recipe.title }}">
+          </div>
+
+          <!-- פרטי המתכון -->
+          <div class="card-body d-flex flex-column text-end">
+            <!-- שם המתכון -->
+            <h5 class="card-title fw-bold text-dark mb-3">{{ recipe.title }}</h5>
+            
+            <!-- מוצרים חסרים -->
+            <div class="mb-3">
+              <p class="text-muted small mb-2">חסר לך להשלמת המתכון:</p>
+              <!-- לולאה על כל המוצרים החסרים -->
+              <div class="d-flex flex-wrap gap-1 justify-content-start">
+                @for (missing of recipe.missing_ingredients; track $index) {
+                  <span class="badge bg-light text-dark border border-warning rounded-pill small">
+                    + {{ missing }}
+                  </span>
+                }
+              </div>
+            </div>
+
+            <!-- כפתור ללינק למתכון המלא -->
+            <button class="btn btn-dark w-100 mt-auto rounded-pill fw-bold py-2 shadow-sm" 
+                    [routerLink]="['/recipe', recipe.id]"
+                    title="צפה במתכון המלא">
+              למתכון המלא
+            </button>
+          </div>
+        </div>
+      </div>
+    } @empty {
+      <!-- הודעה כשאין תוצאות חיפוש -->
+      <div class="col-12">
+        <div class="alert alert-warning text-center">
+          <h4>לא מצאנו מתכונים התואמים</h4>
+        </div>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,162 @@
+.search-header {
+  border-bottom: 2px solid #ffc107;
+  padding-bottom: 1.5rem;
+}
+
+.search-header h2 {
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.search-header p {
+  margin: 0.5rem 0 0 0;
+}
+
+/* עיצוב כפתור המיקרופון */
+.pulse-button {
+  transition: all 0.3s ease;
+}
+
+.pulse-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3) !important;
+}
+
+.pulse-button.btn-warning {
+  background-color: #ffc107 !important;
+  color: #1a1a1a !important;
+  border-color: #ffc107 !important;
+}
+
+.pulse-button.btn-outline-dark {
+  color: #1a1a1a !important;
+  border-color: #1a1a1a !important;
+}
+
+/* שדות הקלט - צל עדין וקצוות מעוגלים */
+.input-group {
+  border-color: #1a1a1a !important;
+  transition: all 0.3s ease;
+}
+
+.input-group:focus-within {
+  box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.2) !important;
+  border-color: #ffc107 !important;
+}
+
+.input-ingredient {
+  text-align: right;
+  font-weight: 500;
+}
+
+.input-ingredient:focus {
+  border-color: #ffc107 !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25) !important;
+  outline: none;
+}
+
+/* כפתורים */
+.btn-outline-dark {
+  color: #1a1a1a !important;
+  border-color: #1a1a1a !important;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-dark:hover {
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
+  border-color: #1a1a1a !important;
+  transform: translateY(-2px);
+}
+
+.btn-dark {
+  background-color: #1a1a1a !important;
+  border-color: #1a1a1a !important;
+  transition: all 0.3s ease;
+  color: #ffffff !important;
+}
+
+.btn-dark:hover {
+  background-color: #333 !important;
+  border-color: #333 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 26, 26, 0.3) !important;
+}
+
+.btn-outline-warning {
+  color: #ffc107 !important;
+  border-color: #ffc107 !important;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.btn-outline-warning:hover {
+  background-color: #ffc107 !important;
+  color: #1a1a1a !important;
+  border-color: #ffc107 !important;
+  transform: translateY(-2px);
+}
+
+/* כרטיסי מתכונים */
+.card-recipe {
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+  background: #ffffff;
+}
+
+.card-recipe:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(26, 26, 26, 0.15) !important;
+  border-color: #ffc107;
+}
+
+.card-img-wrapper {
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+.card-recipe img {
+  transition: transform 0.3s ease;
+  object-fit: cover;
+  object-position: center;
+}
+
+.card-recipe:hover img {
+  transform: scale(1.05);
+}
+
+.card-body {
+  padding: 1.5rem;
+  background: #ffffff;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #1a1a1a !important;
+}
+
+.badge {
+  font-size: 0.75rem;
+  padding: 0.4rem 0.7rem !important;
+  margin: 0.2rem;
+  border-radius: 50px !important;
+  transition: all 0.3s ease;
+}
+
+.badge.bg-warning {
+  background-color: #ffc107 !important;
+  color: #1a1a1a !important;
+  font-weight: 600;
+}
+
+.badge.bg-light {
+  background-color: #f8f9fa !important;
+  color: #1a1a1a !important;
+  border-color: #ffc107 !important;
+}
+
+/* מרווח כללי */
+.container {
+  max-width: 1200px;
+}

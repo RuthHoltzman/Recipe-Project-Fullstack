@@ -1,0 +1,61 @@
+<!-- דף התחברות - משתמשים קיימים מתחברים כאן -->
+<div class="login-container d-flex align-items-center justify-content-center" dir="rtl">
+  <div class="card login-card shadow-lg border-0 rounded-4 p-4">
+    <!-- כותרת וברכה -->
+    <div class="text-center mb-4">
+      <h2 class="fw-bold text-dark">ברוכים הבאים 👋</h2>
+      <p class="text-muted small">היכנסו כדי לשמור מתכונים ולנהל את המקרר</p>
+    </div>
+
+    <!-- הצגת הודעת שגיאה אם יש -->
+    @if (errorMessage) {
+      <div class="alert alert-danger text-center py-2 rounded-pill small">
+        {{ errorMessage }}
+      </div>
+    }
+
+    <!-- טופס התחברות עם אימייל וסיסמה -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- שדה אימייל -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold small text-muted">אימייל</label>
+        <div class="input-group">
+          <span class="input-group-text border-0"><i class="bi bi-envelope"></i></span>
+          <input type="email" formControlName="email" 
+                 class="form-control bg-light border-0 py-2" 
+                 placeholder="your@email.com"
+                 [class.is-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+        </div>
+      </div>
+
+      <!-- שדה סיסמה -->
+      <div class="mb-4">
+        <label class="form-label fw-semibold small text-muted">סיסמה</label>
+        <div class="input-group">
+          <span class="input-group-text border-0"><i class="bi bi-lock"></i></span>
+          <input type="password" formControlName="password" 
+                 class="form-control bg-light border-0 py-2" 
+                 placeholder="••••••••"
+                 [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        </div>
+      </div>
+
+      <!-- כפתור התחברות - מציג טוענת אם מוחכים -->
+      <button type="submit" [disabled]="loginForm.invalid || isLoading" 
+              class="btn btn-dark-custom w-100 rounded-pill py-2 fw-bold shadow-sm mb-3">
+        @if (isLoading) {
+          <span class="spinner-border spinner-border-sm me-2"></span> מתחבר...
+        } @else {
+          התחברות
+        }
+      </button>
+    </form>
+
+    <!-- קישור להרשמה -->
+    <div class="text-center mt-2">
+      <p class="small text-muted mb-0">עדיין אין לך חשבון? 
+        <a routerLink="/register" class="text-orange text-decoration-none">הירשם עכשיו</a>
+      </p>
+    </div>
+  </div>
+</div>

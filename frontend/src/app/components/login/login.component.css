@@ -1,0 +1,70 @@
+.login-container {
+  min-height: calc(100vh - 100px);
+  /* גרדיאנט עדין שמתכתב עם המותג */
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #eee !important;
+}
+
+/* שדות קלט - פוקוס כתום */
+.form-control:focus {
+  box-shadow: none;
+  background-color: #fff !important;
+  border: 1px solid #ffc107 !important;
+}
+
+/* תיקון פינות מעוגלות ל-RTL */
+.input-group-text {
+  border-radius: 0 50rem 50rem 0 !important; /* הפוך ל-RTL */
+  background-color: #f8f9fa;
+  color: #1a1a1a;
+}
+
+input.form-control {
+  border-radius: 50rem 0 0 50rem !important; /* הפוך ל-RTL */
+}
+
+/* כפתור שחור וכתום */
+.btn-dark-custom {
+  background-color: #1a1a1a;
+  color: #ffc107;
+  border: 1px solid #1a1a1a;
+  transition: all 0.3s ease;
+}
+
+.btn-dark-custom:hover:not(:disabled) {
+  background-color: #ffc107;
+  color: #1a1a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+}
+
+.btn-dark-custom:disabled {
+  background-color: #666;
+  border-color: #666;
+  color: #ccc;
+}
+
+/* קישור הרשמה בכתום */
+.text-orange {
+  color: #ffc107 !important;
+  font-weight: bold;
+}
+
+.text-orange:hover {
+  color: #e0a800 !important;
+  text-decoration: underline !important;
+}
+/* ביטול הרקע הכחול של מילוי אוטומטי */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #f8f9fa inset !important; /* צבע הרקע המקורי שלך */
+    -webkit-text-fill-color: #1a1a1a !important; /* צבע הטקסט */
+    transition: background-color 5000s ease-in-out 0s;
+}

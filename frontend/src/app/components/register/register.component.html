@@ -1,0 +1,110 @@
+<!-- דף הרשמה - משתמשים חדשים יוצרים חשבון כאן -->
+<div class="login-container d-flex align-items-center justify-content-center py-5" dir="rtl">
+  <div class="card login-card shadow-lg border-0 rounded-4 p-4">
+    
+    <!-- כותרת וברכה -->
+    <div class="text-center mb-4">
+      <h2 class="fw-bold text-dark">יצירת חשבון חדש ✨</h2>
+      <p class="text-muted small">הצטרפו לקהילת TasteMaster</p>
+    </div>
+
+    <!-- הצגת הודעת שגיאה אם יש -->
+    @if (errorMessage) {
+      <div class="alert alert-danger text-center py-2 rounded-pill small">
+        {{ errorMessage }}
+      </div>
+    }
+
+    <!-- טופס הרשמה עם כל הפרטים הדרושים -->
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" autocomplete="off">
+      
+      <!-- שם פרטי ושם משפחה -->
+      <div class="row">
+        <div class="col-md-6 mb-3 text-end">
+          <label class="form-label fw-semibold small text-muted">שם פרטי</label>
+          <input type="text" 
+                 formControlName="first_name" 
+                 class="form-control rounded-pill bg-light border-0 py-2" 
+                 placeholder="ישראל"
+                 [class.is-invalid]="registerForm.get('first_name')?.invalid && registerForm.get('first_name')?.touched">
+        </div>
+        <div class="col-md-6 mb-3 text-end">
+          <label class="form-label fw-semibold small text-muted">שם משפחה</label>
+          <input type="text" 
+                 formControlName="last_name" 
+                 class="form-control rounded-pill bg-light border-0 py-2" 
+                 placeholder="ישראלי"
+                 [class.is-invalid]="registerForm.get('last_name')?.invalid && registerForm.get('last_name')?.touched">
+        </div>
+      </div>
+
+      <!-- אימייל -->
+      <div class="mb-3 text-end">
+        <label class="form-label fw-semibold small text-muted">אימייל</label>
+        <input type="email" 
+               name="username"
+               formControlName="email" 
+               class="form-control rounded-pill bg-light border-0 py-2" 
+               placeholder="example@gmail.com"
+               autocomplete="username"
+               [class.is-invalid]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+      </div>
+
+      <!-- מספר טלפון -->
+      <div class="mb-3 text-end">
+        <label class="form-label fw-semibold small text-muted">מספר טלפון</label>
+        <input type="text" 
+               formControlName="phone" 
+               class="form-control rounded-pill bg-light border-0 py-2" 
+               placeholder="05XXXXXXXX"
+               autocomplete="none"
+               [class.is-invalid]="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched">
+        <div class="invalid-feedback small pe-2">נא להזין מספר טלפון תקין</div>
+      </div>
+
+      <!-- סיסמה ואימות סיסמה -->
+      <div class="row">
+        <div class="col-md-6 mb-3 text-end">
+          <label class="form-label fw-semibold small text-muted">סיסמה</label>
+          <input type="password" 
+                 formControlName="password" 
+                 class="form-control rounded-pill bg-light border-0 py-2"
+                 autocomplete="password"
+                 [class.is-invalid]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+        </div>
+        <div class="col-md-6 mb-3 text-end">
+          <label class="form-label fw-semibold small text-muted">אימות סיסמה</label>
+          <input type="password" 
+                 formControlName="confirmPassword" 
+                 class="form-control rounded-pill bg-light border-0 py-2"
+                 autocomplete="new-password"
+                 [class.is-invalid]="registerForm.hasError('mismatch') && registerForm.get('confirmPassword')?.touched">
+        </div>
+      </div>
+
+      <div class="mb-4 form-check d-flex align-items-center gap-2 pe-0">
+        <input type="checkbox" formControlName="wants_updates" class="form-check-input" id="updatesCheck">
+        <label class="form-check-label small text-muted" for="updatesCheck">
+          אני מאשר/ת קבלת עדכונים על מתכונים חדשים וטיפים למייל
+        </label>
+      </div>
+
+      <button type="submit" 
+              [disabled]="registerForm.invalid || isLoading" 
+              class="btn btn-dark-custom w-100 rounded-pill py-2 fw-bold shadow-sm mb-3">
+        @if (isLoading) {
+          <span class="spinner-border spinner-border-sm me-2"></span> מייצר חשבון...
+        } @else {
+          הרשמה למערכת
+        }
+      </button>
+    </form>
+
+    <div class="text-center mt-2">
+      <p class="small text-muted mb-0">כבר חברים בקהילה? 
+        <a routerLink="/login" class="text-orange text-decoration-none">התחברו כאן</a>
+      </p>
+    </div>
+
+  </div>
+</div>

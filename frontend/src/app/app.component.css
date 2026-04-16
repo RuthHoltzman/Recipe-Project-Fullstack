@@ -1,0 +1,67 @@
+/* עיצוב התפריט השחור */
+.custom-navbar {
+    background-color: #1a1a1a !important; /* שחור פחם עמוק */
+    padding: 15px 0;
+    border-bottom: 1px solid #333;
+}
+
+/* הטקסט של הלוגו (לבן) */
+.brand-text {
+    color: #ffffff !important;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.logo-icon {
+    font-size: 1.5rem;
+}
+
+/* קישורי הניווט - אפור בהיר שהופך ללבן במעבר עכבר */
+.nav-link {
+    color: #ced4da !important; 
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover, .active-page {
+    color: #ffc107 !important;
+    text-shadow: 0 0 10px rgba(255, 193, 7, 0.2);
+}
+
+/* שלום אורח / שלום משתמש */
+.welcome-text {
+    color: #adb5bd !important;
+    font-size: 0.9rem;
+}
+
+.welcome-text b {
+    color: #ffffff !important; /* שם המשתמש בלבן מודגש */
+}
+
+/* כפתור התחברות - לבן נקי עם טקסט שחור */
+.btn-light {
+    background-color: #ffffff !important;
+    color: #1a1a1a !important;
+    font-weight: 700;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-light:hover {
+    background-color: #f8f9fa !important;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+/* כפתור התנתקות - כתום */
+.btn-outline-warning {
+    color: #ffc107 !important;
+    border-color: #ffc107 !important;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-warning:hover {
+    background-color: #ffc107 !important;
+    color: #1a1a1a !important;
+    border-color: #ffc107 !important;
+}

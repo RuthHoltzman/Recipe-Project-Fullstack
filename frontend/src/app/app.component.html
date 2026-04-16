@@ -1,0 +1,90 @@
+<nav class="navbar navbar-expand-lg custom-navbar shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" routerLink="/home">
+      <span class="logo-icon me-2">🍳</span>
+      <span class="brand-text">TasteMaster</span>
+    </a>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a
+            class="nav-link px-3 fw-500"
+            routerLink="/all-recipes"
+            routerLinkActive="active-page"
+            >כל המתכונים</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link px-3 fw-500"
+            routerLink="/search"
+            routerLinkActive="active-page"
+            >המקרר החכם
+          </a>
+        </li>
+
+        @if (authService.currentUser$ | async; as user) {
+          @if (user.role === "Admin") {
+            <li class="nav-item">
+              <a
+                class="nav-link px-3 text-warning fw-bold"
+                routerLink="/admin"
+                routerLinkActive="active-page"
+                >ניהול מערכת
+              </a>
+            </li>
+          }
+        }
+      </ul>
+
+      <div class="nav-user-zone d-flex align-items-center">
+        <div class="user-info me-3 d-none d-lg-block">
+          @if (!(authService.currentUser$ | async)) {
+            <span class="welcome-text">שלום, <b>אורח  </b></span>
+          } @else {
+            @if (authService.currentUser$ | async; as user) {
+              <li class="nav-item">
+                <a
+                  class="nav-link d-flex align-items-center"
+                  routerLink="/my-book"
+                >
+                  <span
+                    >ספר המתכונים של <b>{{ user.first_name }}</b></span
+                  >
+                </a>
+              </li>
+            }
+          }
+        </div>
+
+        @if (!(authService.currentUser$ | async)) {
+          <button
+            class="btn btn-light btn-sm rounded-pill px-4 fw-bold text-dark"
+            routerLink="/login"
+          >
+            התחברות
+          </button>
+        } @else {
+          <button
+            class="btn btn-outline-light btn-sm rounded-pill px-3 me-2 fw-500"
+            routerLink="/profile"
+          >
+            אזור אישי 👤
+          </button>
+
+          <button
+            class="btn btn-outline-warning btn-sm rounded-pill px-4 fw-bold"
+            (click)="authService.logout()"
+          >
+            התנתקות
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="content-area">
+  <router-outlet></router-outlet>
+</main>

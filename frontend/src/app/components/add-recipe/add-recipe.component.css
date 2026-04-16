@@ -1,0 +1,122 @@
+/* רקע כללי */
+:host {
+  background-color: #f8f9fa;
+  display: block;
+}
+
+/* כותרת שחורה עם גרדיאנט עדין */
+.bg-gradient-dark {
+  background: linear-gradient(135deg, #1a1a1a, #000000);
+}
+
+/* שדות קלט - פוקוס בכתום */
+.form-control, .form-select {
+  border-radius: 12px;
+  box-shadow: none;
+  transition: all 0.3s ease;
+  border: 1px solid #dee2e6;
+}
+
+.form-control:focus, .form-select:focus {
+  background-color: #fff !important;
+  border-color: #ffc107 !important;
+  box-shadow: 0 0 0 4px rgba(255, 193, 7, 0.15);
+  transform: translateY(-2px);
+}
+
+/* אזור העלאת תמונה */
+.image-upload-wrapper {
+  border: 2px dashed #ffc107; /* שונה לכתום */
+  transition: all 0.3s ease;
+}
+
+.image-upload-wrapper:hover {
+  border-color: #e0a800;
+  background-color: #fff9e6 !important;
+}
+
+/* שורת מצרך */
+.ingredient-row {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 8px;
+  transition: background 0.2s;
+}
+
+.ingredient-row:hover {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border: 1px solid #ffc107;
+}
+
+/* כפתורי הוספה (מקווקווים) - הוחלף לכתום ושחור */
+.btn-dashed-orange {
+  border: 2px dashed #ffc107;
+  color: #856404;
+  border-radius: 12px;
+  background: transparent;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn-dashed-orange:hover {
+  background-color: #ffc107;
+  color: #000;
+}
+
+/* מספר שלב בעיגול - כתום בהיר */
+.step-number {
+  background: #ffc107;
+  color: #000;
+  width: 35px;
+  height: 35px;
+  min-width: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* כפתור ראשי - שחור עם טקסט כתום */
+.btn-gradient-dark {
+  background: #1a1a1a;
+  color: #ffc107;
+  border: 1px solid #ffc107;
+  transition: transform 0.2s;
+}
+
+.btn-gradient-dark:hover:not(:disabled) {
+  background: #ffc107;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* כפתור מחיקה */
+.btn-icon-danger-small {
+  color: #dc3545;
+  background: #fff;
+  border: 1px solid #ffeded;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-icon-danger-small:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.instruction-card {
+  transition: transform 0.2s ease;
+}
