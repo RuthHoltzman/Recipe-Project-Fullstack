@@ -2,7 +2,7 @@
 
 
 
-## 🇮🇱 עברית - אודות הפרויקט
+##  - אודות הפרויקט
 מערכת לניהול ושיתוף מתכונים הכוללת ממשק משתמש מתקדם ומערכת ניהול (Admin) עוצמתית. הפרויקט נבנה בדגש על הפרדה מלאה בין צד הלקוח לצד השרת ושימוש בשיטות עבודה מודרניות.
 
 ### 🌟 תכונות עיקריות
@@ -14,7 +14,7 @@
 
 ---
 
-## 🇺🇸 English - About The Project
+##  About The Project
 A comprehensive recipe management and sharing system featuring an advanced user interface and a robust Admin dashboard. Built with a full-stack architecture, focusing on scalability and clean code practices.
 
 ### 🌟 Key Features
@@ -40,7 +40,7 @@ A comprehensive recipe management and sharing system featuring an advanced user 
 ### 1. צד שרת / Backend (Python)
 ```bash
 # כניסה לתיקיית השרת
-cd server
+cd backend
 
 # התקנת הספריות הדרושות
 pip install -r requirements.txt
