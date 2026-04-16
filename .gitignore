@@ -1,15 +1,16 @@
-# Python
-backend/venv/
+# Python System
 backend/__pycache__/
+backend/**/*.pyc
 backend/.idea/
-backend/*.db
-backend/*.pyc
+backend/venv/
 
-# Angular
+# Database 
+backend/*.db
+
+# Angular System
 frontend/node_modules/
 frontend/.angular/
 frontend/dist/
-frontend/.vscode/
 
-# General
-.DS_Store
+# Static images 
+backend/static/images/
