@@ -13,7 +13,7 @@ from PIL import Image, ImageEnhance, ImageFilter
 recipes_bp = Blueprint('recipes', __name__)
 
 # --- 1. קבלת מתכון בודד (כולל לוגיקת מועדפים ודירוג ) ---
-@recipes_bp.route('/api/recipes/<int:recipe_id>', methods=['GET'])
+@recipes_bp.route('/recipes/<int:recipe_id>', methods=['GET'])
 def get_recipe(recipe_id):
     user_id = request.headers.get('User-ID')
     recipe = Recipe.query.get_or_404(recipe_id)
@@ -51,7 +51,7 @@ def get_recipe(recipe_id):
     })
 
 # --- 2. יצירת מתכון (מיזוג לוגיקת Pillow והשדות משני הדפים) ---
-@recipes_bp.route('/api/recipes', methods=['POST'])
+@recipes_bp.route('/recipes', methods=['POST'])
 @uploader_required
 def create_recipe():
     try:
@@ -125,7 +125,7 @@ def create_recipe():
 
 
 # --- 3. חיפוש לפי מצרכים (המקרר) ---
-@recipes_bp.route('/api/search-by-ingredients', methods=['POST'])
+@recipes_bp.route('/search-by-ingredients', methods=['POST'])
 def search_by_ingredients():
     data = request.get_json()
     user_ingredients_list = data.get('ingredients', [])
@@ -157,7 +157,7 @@ def search_by_ingredients():
 
 # --- 4. פונקציות ניהול (מועדפים, דירוג וקטגוריות) ---
 
-@recipes_bp.route('/api/all_recipes', methods=['GET'])
+@recipes_bp.route('/all_recipes', methods=['GET'])
 def get_all_recipes():
     recipes = Recipe.query.all()
     return jsonify([{
@@ -169,7 +169,7 @@ def get_all_recipes():
     } for r in recipes])
 
 
-@recipes_bp.route('/api/categories', methods=['GET'])
+@recipes_bp.route('/categories', methods=['GET'])
 def get_categories():
     categories = Category.query.all()
     return jsonify([{
@@ -177,7 +177,7 @@ def get_categories():
         "icon": c.icon, "color": getattr(c, 'color', '#ffffff')
     } for c in categories])
 
-@recipes_bp.route('/api/recipes/<int:recipe_id>/review', methods=['POST'])
+@recipes_bp.route('/recipes/<int:recipe_id>/review', methods=['POST'])
 @login_required
 def add_review(recipe_id):
     user_id = request.headers.get('User-ID')
@@ -207,7 +207,7 @@ def add_review(recipe_id):
 
 
 # --- 5. שליפת כל המועדפים של המשתמש (עבור דף My Book) ---
-@recipes_bp.route('/api/recipes/my-favorites', methods=['GET'])
+@recipes_bp.route('/recipes/my-favorites', methods=['GET'])
 @login_required
 def get_user_favorites_list():
     user_id = request.headers.get('User-ID')
@@ -230,7 +230,7 @@ def get_user_favorites_list():
     } for r in user.favorite_recipes])
 
 # --- 6. הסרה/הוספה של מועדף (Toggle) ---
-@recipes_bp.route('/api/recipes/<int:recipe_id>/toggle-favorite', methods=['POST'])
+@recipes_bp.route('/recipes/<int:recipe_id>/toggle-favorite', methods=['POST'])
 @login_required
 def toggle_favorite(recipe_id):
     user_id = request.headers.get('User-ID')
@@ -249,7 +249,7 @@ def toggle_favorite(recipe_id):
     return jsonify({"is_favorite": is_fav})
 
 
-@recipes_bp.route('/api/user/<int:user_id>/recipes', methods=['GET'])
+@recipes_bp.route('/user/<int:user_id>/recipes', methods=['GET'])
 def get_user_recipes(user_id):
     try:
         # שליפת המתכונים של המשתמש

@@ -21,7 +21,7 @@ def get_all_users():
 
 
 # קבלת כל המתכונים למנהל
-@admin_bp.route('/api/admin/recipes', methods=['GET'])
+@admin_bp.route('/admin/recipes', methods=['GET'])
 @admin_required
 def admin_get_all_recipes():
     try:
@@ -38,9 +38,8 @@ def admin_get_all_recipes():
     except Exception as e:
         return jsonify({"message": str(e)}), 500
 
-# אישור משתמש (תומך בשני הנתיבים שהיו לך)
+# אישור משתמש
 @admin_bp.route('/admin/approve-user/<int:user_id>', methods=['POST'])
-@admin_bp.route('/api/admin/approve-user/<int:user_id>', methods=['POST'])
 @admin_required
 def approve_user(user_id):
     user = User.query.get_or_404(user_id)
@@ -49,7 +48,7 @@ def approve_user(user_id):
     return jsonify({"message": f"המשתמש {user.email} אושר בהצלחה!"}), 200
 
 # מחיקת מתכון ע"י מנהל
-@admin_bp.route('/api/admin/recipes/<int:recipe_id>', methods=['DELETE'])
+@admin_bp.route('/admin/recipes/<int:recipe_id>', methods=['DELETE'])
 @admin_required
 def admin_delete_recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)

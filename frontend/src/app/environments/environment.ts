@@ -1,5 +1,5 @@
 // Environment configuration for development
 export const environment = {
   production: false,
-  apiUrl: ''
+  apiUrl: 'http://localhost:5000' // כתובת השרת לפיתוח
 };

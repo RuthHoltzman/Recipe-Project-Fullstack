@@ -11,7 +11,7 @@ shopping_list_bp = Blueprint('shopping_list', __name__)
 # דפי רשימת קניות: טיפול בפריטים של כל משתמש (הוספה ממתכון, שליפה, מחיקה).
 # הערות מסבירות שה-User-ID מועבר בכותרות הבקשה וכי הפריטים מקושרים למשתמש.
 
-@shopping_list_bp.route('/api/shopping-list/<int:item_id>', methods=['DELETE'])
+@shopping_list_bp.route('/shopping-list/<int:item_id>', methods=['DELETE'])
 @login_required
 def delete_shopping_item(item_id):
     user_id = request.headers.get('User-ID')
@@ -22,7 +22,7 @@ def delete_shopping_item(item_id):
     return jsonify({"message": "הפריט נמחק בהצלחה"})
 
 # 2. שליפת רשימת הקניות של המשתמש המחובר
-@shopping_list_bp.route('/api/shopping-list', methods=['GET'])
+@shopping_list_bp.route('/shopping-list', methods=['GET'])
 @login_required
 def get_shopping_list():
     user_id = request.headers.get('User-ID')
@@ -38,7 +38,7 @@ def get_shopping_list():
 
 
 # 1. הוספת כל המצרכים של מתכון מסוים לרשימת הקניות
-@shopping_list_bp.route('/api/shopping-list/add-recipe/<int:recipe_id>', methods=['POST'])
+@shopping_list_bp.route('/shopping-list/add-recipe/<int:recipe_id>', methods=['POST'])
 @login_required
 def add_recipe_to_shopping_list(recipe_id):
     user_id = request.headers.get('User-ID')

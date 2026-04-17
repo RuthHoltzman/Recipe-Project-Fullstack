@@ -65,6 +65,6 @@ export class AuthService {
 }
 
 getUserRecipes(userId: number): Observable<any[]> {
-  return this.http.get<any[]>(`${this.apiUrl}/api/user/${userId}/recipes`);
+  return this.http.get<any[]>(`${this.apiUrl}/user/${userId}/recipes`);
 }
 }

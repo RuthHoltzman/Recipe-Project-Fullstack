@@ -8,7 +8,7 @@ import { environment } from '../environments/environment';
   providedIn: 'root',
 })
 export class RecipeService {
-  private apiUrl = environment.apiUrl + '/api'; // כתובת השרת
+  private apiUrl = environment.apiUrl ; // כתובת השרת
 
   constructor(private http: HttpClient) {}
 
